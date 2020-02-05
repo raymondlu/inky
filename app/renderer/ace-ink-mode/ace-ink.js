@@ -13,7 +13,7 @@ var inkHighlightRules = function() {
         }, {
             include: "#comments"
         }, {
-            regex: /^(\s*)(={2,})(\s*)((?:function)?)(\s*)([\u4e00-\u9fa5\w]+)(\s*)(\([\w,\s->]*\))?(\s*)((?:={1,})?)/,
+            regex: /^(\s*)(={2,})(\s*)((?:function)?)(\s*)([\u4e00-\u9fa5\w]+)(\s*)(\([\u4e00-\u9fa5\w,\s->]*\))?(\s*)((?:={1,})?)/,
             token: [
                 "",
                 "flow.knot.declaration.punctuation",  // ===
@@ -27,7 +27,7 @@ var inkHighlightRules = function() {
                 "flow.knot.declaration.punctuation"   // ====
             ]
         }, {
-            regex: /^(\s*)(=)(\s*)([\u4e00-\u9fa5\w]+)(\s*)(\([\w,\s->]*\))?/,
+            regex: /^(\s*)(=)(\s*)([\u4e00-\u9fa5\w]+)(\s*)(\([\u4e00-\u9fa5\w,\s->]*\))?/,
             token: [
                 "flow.stitch.declaration",             // whitespace
                 "flow.stitch.declaration.punctuation", // =
@@ -128,7 +128,7 @@ var inkHighlightRules = function() {
             ]
         }, {
             // Tunnel onwards
-            regex: /(->->)(\s*)(\w[\w\.\s]*)/,
+            regex: /(->->)(\s*)(\u4e00-\u9fa5\w[\u4e00-\u9fa5\w\.\s]*)/,
             token: [
                 "divert.to-tunnel",      // ->->
                 "divert",                // whitespace
@@ -136,7 +136,7 @@ var inkHighlightRules = function() {
             ]
         }, {
             // Divert with parameters: -> knot (param, -> param2)
-            regex: /(->|<-)(\s*)(\w[\w\.\s]*?)(\s*)(\()/,
+            regex: /(->|<-)(\s*)([\u4e00-\u9fa5\w][\u4e00-\u9fa5\w\.\s]*?)(\s*)(\()/,
             token: [
                 "divert.operator",  // ->
                 "divert",           // whitespace
@@ -146,7 +146,7 @@ var inkHighlightRules = function() {
             ],
             push: [{
                 // Divert target, as parameter to the current divert
-                regex: /(->)(\s*)(\w[\w\.\s]*?)(\s*)(?![\w\.])/,
+                regex: /(->)(\s*)([\u4e00-\u9fa5\w][\u4e00-\u9fa5\w\.\s]*?)(\s*)(?![\u4e00-\u9fa5\w\.])/,
                 token: [
                     "divert.parameter.operator",  // ->
                     "divert.parameter",           // whitespace
@@ -166,7 +166,7 @@ var inkHighlightRules = function() {
             }]
         }, {
             // Vanilla divert
-            regex: /(->|<-)(\s*)(\w[\w\.\s]*?)(\s*)(?![\w\.])/,
+            regex: /(->|<-)(\s*)([\u4e00-\u9fa5\w][\u4e00-\u9fa5\w\.\s]*?)(\s*)(?![\u4e00-\u9fa5\w\.])/,
             token: [
                 "divert.operator",  // -> | <-
                 "divert",           // whitespace
@@ -183,7 +183,7 @@ var inkHighlightRules = function() {
         // the closing bracket doesn't accidentally cause the rule to end early. 
         // Having it as a separate rule also allows it to be recursive.
         "#functionCallInDivertParameter": [{
-            regex: /\w+\s*\(/,
+            regex: /[\u4e00-\u9fa5\w]+\s*\(/,
             token: "divert.parameter",
             push: [{
                 "include": "#functionCallInDivertParameter"
@@ -287,7 +287,7 @@ var inkHighlightRules = function() {
         }],
 
         "#listItem": [{
-            regex: /([\w\(\)=\d\s]+)/,
+            regex: /([\u4e00-\u9fa5\w\(\)=\d\s]+)/,
             token: ["list-decl.item"],
             next: "#listItemsSeparator"
         }],
