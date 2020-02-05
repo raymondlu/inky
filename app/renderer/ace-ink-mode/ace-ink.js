@@ -13,7 +13,7 @@ var inkHighlightRules = function() {
         }, {
             include: "#comments"
         }, {
-            regex: /^(\s*)(={2,})(\s*)((?:function)?)(\s*)(\w+)(\s*)(\([\w,\s->]*\))?(\s*)((?:={1,})?)/,
+            regex: /^(\s*)(={2,})(\s*)((?:function)?)(\s*)([\u4e00-\u9fa5\w]+)(\s*)(\([\w,\s->]*\))?(\s*)((?:={1,})?)/,
             token: [
                 "",
                 "flow.knot.declaration.punctuation",  // ===
@@ -27,7 +27,7 @@ var inkHighlightRules = function() {
                 "flow.knot.declaration.punctuation"   // ====
             ]
         }, {
-            regex: /^(\s*)(=)(\s*)(\w+)(\s*)(\([\w,\s->]*\))?/,
+            regex: /^(\s*)(=)(\s*)([\u4e00-\u9fa5\w]+)(\s*)(\([\w,\s->]*\))?/,
             token: [
                 "flow.stitch.declaration",             // whitespace
                 "flow.stitch.declaration.punctuation", // =
@@ -48,7 +48,7 @@ var inkHighlightRules = function() {
             ]
         }],
         "#choice": [{
-            regex: /(\s*)((?:[\*\+]\s?)+)(\s*)(?:(\(\s*)(\w+)(\s*\)))?/,
+            regex: /(\s*)((?:[\*\+]\s?)+)(\s*)(?:(\(\s*)([\u4e00-\u9fa5\w]+)(\s*\)))?/,
             token: [
                 "choice",                           // whitespace
                 "choice.bullets",                   // * or +
@@ -213,7 +213,7 @@ var inkHighlightRules = function() {
             }, {
                 include: "#logicLineInsert"
             }, {
-                regex: /(\(\s*)(\w+)(\s*\)\s*)/,
+                regex: /(\(\s*)([\u4e00-\u9fa5\w]+)(\s*\)\s*)/,
                 token: [
                     "gather.label",      // (
                     "gather.label.name", // label_name
@@ -228,14 +228,14 @@ var inkHighlightRules = function() {
             }]
         }],
         "#globalVAR": [{
-            regex: /^(\s*)(VAR|CONST)\b/, // (\s*)(\w+)(\s*)
+            regex: /^(\s*)(VAR|CONST)\b/, // (\s*)([\u4e00-\u9fa5\w]+)(\s*)
             token: [
                 "var-decl", // whitespace
                 "var-decl.keyword"
             ],
             
             push: [{
-                regex: /(\s*)(\w+)(\s*)/,
+                regex: /(\s*)([\u4e00-\u9fa5\w]+)(\s*)/,
                 token: [
                     "var-decl",      // whitespace
                     "var-decl.name", // var_name
@@ -261,7 +261,7 @@ var inkHighlightRules = function() {
                 "list-decl.keyword"   // LIST
             ],
             push: [ {
-                    regex: /(\w+)(\s*=\s*)/,
+                    regex: /([\u4e00-\u9fa5\w]+)(\s*=\s*)/,
                     token: [
                         "list-decl.name", // list_name
                         "list-decl"       // whitespace & equals sign
